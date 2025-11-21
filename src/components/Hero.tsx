@@ -11,14 +11,14 @@ const Hero = () => {
       <div className="container px-4 py-20 text-center">
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Hi, I'm John Doe
+            Hi, I'm Prashis Tiruwa
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-4">
-            Full Stack Developer & Designer
+            Full Stack Developer & Cybersecurity Specialist
           </p>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            I craft beautiful digital experiences with clean code and creative design. 
-            Passionate about building products that make a difference.
+            B.Sc.CSIT student with hands-on experience in full-stack web development and cybersecurity. 
+            I build secure, scalable web applications and have expertise in both offensive and defensive security practices.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <Button 
