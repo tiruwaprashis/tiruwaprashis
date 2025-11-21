@@ -1,6 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Briefcase, GraduationCap } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { cn } from "@/lib/utils";
 
 const experiences = [
   {
@@ -51,47 +53,80 @@ const education = [
 ];
 
 const Experience = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation(0.1);
+  const { ref: workRef, isVisible: workVisible } = useScrollAnimation(0.1);
+  const { ref: eduRef, isVisible: eduVisible } = useScrollAnimation(0.1);
+
   return (
-    <section className="py-20 bg-background">
+    <section id="experience" className="py-20 bg-background">
       <div className="container px-4">
-        <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <h2 className="text-4xl font-bold mb-4">Experience & Education</h2>
+        <div
+          ref={headerRef}
+          className={cn(
+            "text-center mb-12 opacity-0 transition-all duration-700",
+            headerVisible && "opacity-100 animate-fade-in-up"
+          )}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Experience & Education</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             My professional journey and academic background
           </p>
         </div>
-        
-        <div className="max-w-4xl mx-auto space-y-12">
+
+        <div className="max-w-5xl mx-auto space-y-16">
           {/* Work Experience */}
-          <div>
-            <div className="flex items-center gap-2 mb-6">
-              <Briefcase className="w-6 h-6 text-primary" />
-              <h3 className="text-2xl font-semibold">Work Experience</h3>
+          <div
+            ref={workRef}
+            className={cn(
+              "opacity-0 transition-all duration-700",
+              workVisible && "opacity-100 animate-fade-in-left"
+            )}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <div className="p-3 rounded-lg bg-primary/10">
+                <Briefcase className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="text-2xl md:text-3xl font-semibold">Work Experience</h3>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-6 relative">
+              {/* Timeline line */}
+              <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-primary/20 hidden md:block" />
+
               {experiences.map((exp, index) => (
-                <Card key={index} className="hover:shadow-lg transition-all duration-300">
+                <Card
+                  key={index}
+                  className="hover-lift md:ml-12"
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                >
                   <CardHeader>
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                      <CardTitle>{exp.title}</CardTitle>
-                      <Badge variant="secondary">{exp.period}</Badge>
+                      <CardTitle className="text-xl">{exp.title}</CardTitle>
+                      <Badge variant="secondary" className="w-fit">
+                        {exp.period}
+                      </Badge>
                     </div>
                     <CardDescription className="text-base font-medium">
                       {exp.company}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-2 mb-4">
+                    <ul className="space-y-3 mb-4">
                       {exp.description.map((item, i) => (
-                        <li key={i} className="text-muted-foreground flex gap-2">
-                          <span className="text-primary mt-1">•</span>
+                        <li key={i} className="text-muted-foreground flex gap-3">
+                          <span className="text-primary mt-1 font-bold">•</span>
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
                     <div className="flex flex-wrap gap-2">
                       {exp.skills.map((skill, i) => (
-                        <Badge key={i} variant="outline">{skill}</Badge>
+                        <Badge
+                          key={i}
+                          variant="outline"
+                          className="hover:bg-primary hover:text-primary-foreground transition-colors"
+                        >
+                          {skill}
+                        </Badge>
                       ))}
                     </div>
                   </CardContent>
@@ -101,14 +136,29 @@ const Experience = () => {
           </div>
 
           {/* Education */}
-          <div>
-            <div className="flex items-center gap-2 mb-6">
-              <GraduationCap className="w-6 h-6 text-primary" />
-              <h3 className="text-2xl font-semibold">Education</h3>
+          <div
+            ref={eduRef}
+            className={cn(
+              "opacity-0 transition-all duration-700",
+              eduVisible && "opacity-100 animate-fade-in-right"
+            )}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <div className="p-3 rounded-lg bg-accent/10">
+                <GraduationCap className="w-6 h-6 text-accent" />
+              </div>
+              <h3 className="text-2xl md:text-3xl font-semibold">Education</h3>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-4 relative">
+              {/* Timeline line */}
+              <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-accent/20 hidden md:block" />
+
               {education.map((edu, index) => (
-                <Card key={index} className="hover:shadow-lg transition-all duration-300">
+                <Card
+                  key={index}
+                  className="hover-lift md:ml-12"
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                >
                   <CardHeader>
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                       <CardTitle className="text-lg">{edu.degree}</CardTitle>
@@ -116,7 +166,7 @@ const Experience = () => {
                         {edu.year}
                       </Badge>
                     </div>
-                    <CardDescription>{edu.institution}</CardDescription>
+                    <CardDescription className="text-base">{edu.institution}</CardDescription>
                   </CardHeader>
                 </Card>
               ))}

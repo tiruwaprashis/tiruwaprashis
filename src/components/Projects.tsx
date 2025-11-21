@@ -1,6 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { cn } from "@/lib/utils";
 
 const projects = [
   {
@@ -53,70 +55,99 @@ const projects = [
   }
 ];
 
+const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: number }) => {
+  const { ref, isVisible } = useScrollAnimation(0.1);
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "opacity-0 transition-all duration-700",
+        isVisible && "opacity-100 animate-fade-in-up"
+      )}
+      style={{ animationDelay: `${index * 0.1}s` }}
+    >
+      <Card className="overflow-hidden group hover-lift h-full">
+        <div className="relative overflow-hidden h-48">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+            {project.github !== "#" && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-primary text-primary-foreground rounded-full hover:scale-110 transition-transform shadow-lg"
+                aria-label="View on GitHub"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+            )}
+            {project.demo !== "#" && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-primary text-primary-foreground rounded-full hover:scale-110 transition-transform shadow-lg"
+                aria-label="View live demo"
+              >
+                <ExternalLink className="w-5 h-5" />
+              </a>
+            )}
+          </div>
+        </div>
+
+        <CardHeader>
+          <CardTitle className="group-hover:text-primary transition-colors">
+            {project.title}
+          </CardTitle>
+          <CardDescription>{project.description}</CardDescription>
+        </CardHeader>
+
+        <CardContent>
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((tag, tagIndex) => (
+              <Badge
+                key={tagIndex}
+                variant="secondary"
+                className="hover:bg-primary hover:text-primary-foreground transition-colors"
+              >
+                {tag}
+              </Badge>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
 const Projects = () => {
+  const { ref, isVisible } = useScrollAnimation(0.1);
+
   return (
     <section id="projects" className="py-20 bg-muted/30">
       <div className="container px-4">
-        <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
+        <div
+          ref={ref}
+          className={cn(
+            "text-center mb-12 opacity-0 transition-all duration-700",
+            isVisible && "opacity-100 animate-fade-in-up"
+          )}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            A collection of web applications demonstrating full-stack development and problem-solving skills
+            A collection of web applications demonstrating full-stack development and problem-solving
+            skills
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <Card 
-              key={index} 
-              className="overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="relative overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center gap-4 pb-4">
-                  {project.github !== "#" && (
-                    <a 
-                      href={project.github} 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 bg-card rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
-                      aria-label="View on GitHub"
-                    >
-                      <Github className="w-5 h-5" />
-                    </a>
-                  )}
-                  {project.demo !== "#" && (
-                    <a 
-                      href={project.demo} 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 bg-card rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
-                      aria-label="View live demo"
-                    >
-                      <ExternalLink className="w-5 h-5" />
-                    </a>
-                  )}
-                </div>
-              </div>
-              
-              <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
-              </CardHeader>
-              
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIndex) => (
-                    <Badge key={tagIndex} variant="secondary">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            <ProjectCard key={index} project={project} index={index} />
           ))}
         </div>
       </div>
