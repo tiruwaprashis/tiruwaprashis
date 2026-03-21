@@ -18,7 +18,7 @@ const projects = [
     description: "A Laravel-based application for managing blood donations and donor eligibility with location-based search and comprehensive admin panel.",
     tags: ["Laravel", "PHP", "MySQL", "Admin Panel"],
     image: "https://images.unsplash.com/photo-1615461065929-4f8ffed6ca40?w=800&h=600&fit=crop",
-    github: "https://github.com/tiruwaprashis",
+    github: "https://github.com/tiruwaprashis/Blood-Bank",
     demo: "#"
   },
   {
@@ -42,7 +42,7 @@ const projects = [
     description: "Custom backend admin panel built with Laravel and Voyager providing CRUD functionalities, database management, and role-based access control.",
     tags: ["Laravel", "Voyager", "CRUD", "Dashboard"],
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-    github: "https://github.com/tiruwaprashis",
+    github: "https://github.com/tiruwaprashis/backend-website",
     demo: "#"
   },
   {
@@ -50,7 +50,7 @@ const projects = [
     description: "Creative and responsive website showcasing modern UI/UX design with interactive animations, smooth transitions, and engaging visual effects.",
     tags: ["HTML", "CSS", "JavaScript", "Animations"],
     image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop",
-    github: "https://github.com/tiruwaprashis",
+    github: "https://github.com/tiruwaprashis/Animated-website",
     demo: "#"
   }
 ];
