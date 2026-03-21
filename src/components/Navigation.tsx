@@ -11,26 +11,6 @@ const navItems = [
   { label: "Contact", href: "#contact" }
 ];
 
-const LionIcon = () => (
-  <svg 
-    viewBox="0 0 100 100" 
-    className="w-12 h-12 fill-primary animate-pulse-slow" 
-    style={{ filter: "drop-shadow(0px 0px 4px rgba(var(--primary), 0.5))" }}
-  >
-    {/* Geometric Lion Silhouette */}
-    <path d="M50 10 L35 25 L35 40 L20 45 L25 60 L50 90 L75 60 L80 45 L65 40 L65 25 Z" fill="currentColor" opacity="0.2" />
-    <path d="M50 15 L40 28 L40 42 L25 48 L30 62 L50 85 L70 62 L75 48 L60 42 L60 28 Z" fill="currentColor" />
-    {/* Eyes/Features */}
-    <path d="M42 45 L48 48 L42 51 Z" fill="background" />
-    <path d="M58 45 L52 48 L58 51 Z" fill="background" />
-    <path d="M48 65 L50 68 L52 65 Z" fill="background" />
-    {/* Mane Details */}
-    <rect x="48" y="10" width="4" height="10" fill="currentColor" rx="2" />
-    <rect x="30" y="20" width="2" height="15" transform="rotate(-30 30 20)" fill="currentColor" rx="1" />
-    <rect x="70" y="20" width="2" height="15" transform="rotate(30 70 20)" fill="currentColor" rx="1" />
-  </svg>
-);
-
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -73,21 +53,22 @@ const Navigation = () => {
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            {/* Logo Section: Text Top, Lion Bottom */}
+            {/* Correct Logo Stack:
+              1. Full Logo Image (contains the lion on top, TPSecure middle, tagline bottom)
+            */}
             <a
               href="#hero"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToSection("#hero");
               }}
-              className="flex flex-col items-center group transition-transform hover:scale-105"
+              className="flex items-center gap-2 group transition-transform hover:scale-105"
             >
-              <span className="text-2xl font-bold text-gradient tracking-tight">
-                TPSecure
-              </span>
-              <div className="mt-[-4px]"> {/* Slight negative margin to pull icon closer */}
-                <LionIcon />
-              </div>
+              <img 
+                src="/logo_full.png"  // Make sure to save your image here
+                alt="TPSecure" 
+                className="h-14 w-auto drop-shadow-lg" // Adjust height (h-14) to fit your nav
+              />
             </a>
 
             {/* Desktop Navigation */}
@@ -171,8 +152,28 @@ const Navigation = () => {
               {item.label}
             </a>
           ))}
+          <div className="flex gap-4 mt-4">
+            <Button variant="outline" size="icon" asChild>
+              <a href="https://github.com/tiruwaprashis" target="_blank" rel="noopener noreferrer">
+                <Github className="w-5 h-5" />
+              </a>
+            </Button>
+            <Button variant="outline" size="icon" asChild>
+              <a href="https://www.linkedin.com/in/prashis-tiruwa-9433a0300/" target="_blank" rel="noopener noreferrer">
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
+      
+      {/* Scroll Progress Bar */}
+      <div
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary to-accent z-[60] transition-all duration-150"
+        style={{
+          width: `${(typeof window !== 'undefined') ? ((window.scrollY) / (document.documentElement.scrollHeight - window.innerHeight)) * 100 : 0}%`
+        }}
+      />
     </>
   );
 };
