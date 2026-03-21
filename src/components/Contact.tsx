@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const contactInfo = [
   { icon: Mail, label: "Email", value: "tiruwaprashis4@gmail.com", href: "mailto:tiruwaprashis4@gmail.com" },
   { icon: Phone, label: "Phone", value: "+977 9824528738", href: "tel:+9779824528738" },
-  { icon: MapPin, label: "Location", value: "Badhaiyatal-3, Bardiya, Nepal", href: "#" }
+  { icon: MapPin, label: "Location", value: "Kathmandu, Nepal", href: "#" }
 ];
 
 const socialLinks = [
