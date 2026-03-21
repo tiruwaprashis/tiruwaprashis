@@ -11,6 +11,29 @@ const navItems = [
   { label: "Contact", href: "#contact" }
 ];
 
+// Professional Geometric Lion SVG - Mimics the logo provided
+const LionIcon = () => (
+  <svg 
+    viewBox="0 0 100 100" 
+    className="w-10 h-10 fill-[#d97706] transition-all duration-500 hover:scale-110" 
+    style={{ filter: "drop-shadow(0px 0px 8px rgba(217, 119, 6, 0.4))" }}
+  >
+    {/* Outer Shield/Mane Shape */}
+    <path d="M50 5 L30 20 L30 45 L20 50 L25 70 L50 95 L75 70 L80 50 L70 45 L70 20 Z" opacity="0.15" />
+    {/* Main Lion Head Face */}
+    <path d="M50 15 L38 28 L38 45 L25 52 L32 68 L50 88 L68 68 L75 52 L62 45 L62 28 Z" />
+    {/* Eye Silhouettes */}
+    <path d="M42 48 L48 51 L42 54 Z" fill="black" opacity="0.6" />
+    <path d="M58 48 L52 51 L58 54 Z" fill="black" opacity="0.6" />
+    {/* Nose/Muzzle detail */}
+    <path d="M47 68 L50 72 L53 68 Z" fill="black" opacity="0.4" />
+    {/* Circuit-style Mane Accents */}
+    <rect x="48" y="10" width="4" height="12" rx="1" />
+    <rect x="32" y="22" width="2" height="18" transform="rotate(-35 32 22)" />
+    <rect x="68" y="22" width="2" height="18" transform="rotate(35 68 22)" />
+  </svg>
+);
+
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -20,7 +43,6 @@ const Navigation = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      // Update active section based on scroll position
       const sections = navItems.map(item => item.href.substring(1));
       const current = sections.find(section => {
         const element = document.getElementById(section);
@@ -50,22 +72,25 @@ const Navigation = () => {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled
-            ? "bg-background/80 backdrop-blur-md shadow-md py-4"
-            : "bg-transparent py-6"
+            ? "bg-background/80 backdrop-blur-md shadow-md py-3"
+            : "bg-transparent py-5"
         )}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            {/* Logo */}
+            {/* Logo: TPSecure on Top, Lion Icon Bottom */}
             <a
               href="#hero"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToSection("#hero");
               }}
-              className="text-2xl font-bold text-gradient hover:scale-105 transition-transform"
+              className="flex flex-col items-center group transition-transform"
             >
-              TPSecure
+              <span className="text-2xl font-bold text-gradient tracking-tight leading-none mb-1">
+                TPSecure
+              </span>
+              <LionIcon />
             </a>
 
             {/* Desktop Navigation */}
@@ -196,7 +221,7 @@ const Navigation = () => {
       <div
         className="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary to-accent z-50 transition-all duration-150"
         style={{
-          width: `${((window.scrollY) / (document.documentElement.scrollHeight - window.innerHeight)) * 100}%`
+          width: `${(typeof window !== 'undefined') ? ((window.scrollY) / (document.documentElement.scrollHeight - window.innerHeight)) * 100 : 0}%`
         }}
       />
     </>
