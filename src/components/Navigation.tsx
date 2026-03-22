@@ -112,7 +112,7 @@ const Navigation = () => {
               </Button>
               <Button variant="ghost" size="icon" asChild>
                 <a
-                  href="https://www.linkedin.com/in/prashis-tiruwa-9433a0300/"
+                  href="https://www.linkedin.com/in/prashish-tiruwaa-9433a0300/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
