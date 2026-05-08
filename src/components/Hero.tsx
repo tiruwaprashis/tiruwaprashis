@@ -112,7 +112,7 @@ const Hero = () => {
 
               <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-background shadow-2xl z-10 bg-muted">
                 <img 
-                  src="/Pi7_Passport_Photo (1).jpeg" 
+                  src="/Pi7_PassportSize pic.jpeg" 
                   alt="Prashis Tiruwa" 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
