@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Sparkles } from "lucide-react";
+import { ArrowDown, Code2, Shield, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const Hero = () => {
@@ -26,7 +26,7 @@ const Hero = () => {
       id="hero"
       className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-primary/5 via-accent/5 to-background pt-20"
     >
-      {/* Animated background elements - RESTORED EXACTLY */}
+      {/* 1. ORIGINAL BACKGROUND ANIMATIONS */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
           className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"
@@ -44,34 +44,43 @@ const Hero = () => {
         />
       </div>
 
+      {/* 2. MAIN CONTAINER with fixed horizontal padding */}
       <div className="container mx-auto px-10 md:px-16 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           
-          {/* CONTENT SECTION */}
           <div className="w-full md:w-1/2 text-left animate-fade-in-left">
-            {/* 1. Available Badge */}
+            {/* "Available" Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
               <Sparkles className="w-4 h-4" />
               <span>Available for New Opportunities</span>
             </div>
 
-            {/* 2. MOBILE ONLY: Rotating Image (Visible only on mobile/tablet) */}
-            <div className="md:hidden flex justify-center items-center mb-10">
+            {/* 3. MOBILE RESPONSIVE SECTION: Floating Icons + Rotating Image */}
+            <div className="md:hidden flex flex-col items-center mb-10">
+              {/* Floating Icons */}
+              <div className="flex justify-center gap-8 mb-8">
+                <div className="animate-float" style={{ animationDelay: "0s" }}>
+                  <Code2 className="w-12 h-12 text-primary opacity-60" />
+                </div>
+                <div className="animate-float" style={{ animationDelay: "0.5s" }}>
+                  <Shield className="w-12 h-12 text-accent opacity-60" />
+                </div>
+                <div className="animate-float" style={{ animationDelay: "1s" }}>
+                  <Sparkles className="w-12 h-12 text-primary opacity-60" />
+                </div>
+              </div>
+
+              {/* Rotating Image (Mobile) */}
               <div className="relative group">
-                <div className="absolute -inset-4 border-2 border-dashed border-primary/40 rounded-full animate-spin-slow opacity-60 shadow-[0_0_20px_rgba(var(--primary),0.3)]"></div>
+                <div className="absolute -inset-4 border-2 border-dashed border-primary/40 rounded-full animate-spin-slow opacity-60"></div>
                 <div className="absolute -inset-8 border-2 border-accent/30 rounded-full animate-spin-reverse border-t-transparent border-b-transparent"></div>
                 <div className="relative w-60 h-60 rounded-full overflow-hidden border-4 border-background shadow-2xl z-10">
-                  <img 
-                    src="/Pi7_Passport_Photo (1).jpeg" 
-                    alt="Prashis Tiruwa" 
-                    className="w-full h-full object-cover"
-                  />
+                  <img src="/Pi7_Passport_Photo (1).jpeg" alt="Prashis" className="w-full h-full object-cover" />
                 </div>
-                <div className="absolute inset-0 bg-primary/20 blur-[60px] rounded-full -z-10 animate-pulse"></div>
               </div>
             </div>
             
-            {/* 3. Introduction Details */}
+            {/* Introduction Text */}
             <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
               Hi, I'm <span className="text-gradient">Prashis</span>
             </h1>
@@ -93,12 +102,11 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* DESKTOP ONLY: Rotating Image (Visible only on medium screens and up) */}
+          {/* 4. DESKTOP ONLY: Rotating Image Section */}
           <div className="hidden md:flex w-full md:w-1/2 justify-center items-center animate-fade-in-right">
             <div className="relative group">
               <div className="absolute -inset-4 border-2 border-dashed border-primary/40 rounded-full animate-spin-slow opacity-60 shadow-[0_0_20px_rgba(var(--primary),0.3)]"></div>
               <div className="absolute -inset-8 border-2 border-accent/30 rounded-full animate-spin-reverse border-t-transparent border-b-transparent"></div>
-
               <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-background shadow-2xl z-10 bg-muted">
                 <img 
                   src="/Pi7_Passport_Photo (1).jpeg" 
@@ -106,10 +114,10 @@ const Hero = () => {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
-              
               <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full -z-10 animate-pulse"></div>
             </div>
           </div>
+
         </div>
 
         {/* Stats Section */}
@@ -120,10 +128,7 @@ const Hero = () => {
             { value: "10+", label: "Technologies" },
             { value: "2", label: "Internships" },
           ].map((stat, index) => (
-            <div
-              key={index}
-              className="p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all hover:scale-105"
-            >
+            <div key={index} className="p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all">
               <div className="text-3xl md:text-4xl font-bold text-gradient">{stat.value}</div>
               <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
             </div>
