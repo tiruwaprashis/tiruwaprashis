@@ -21,77 +21,84 @@ const Hero = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const stats = [
-    { value: "6+", label: "Projects" },
-    { value: "2+", label: "Years Learning" },
-    { value: "10+", label: "Technologies" },
-    { value: "2+", label: "Internships" },
-  ];
-
   return (
     <section
       id="hero"
       className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-primary/5 via-accent/5 to-background pt-20"
     >
-      {/* BACKGROUND ELEMENTS - Kept exactly as you requested */}
+      {/* Animated background elements - RESTORED EXACTLY */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Element 1 */}
         <div
-          className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/10 rounded-full blur-[120px] animate-pulse"
+          className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse"
           style={{
             transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
             transition: "transform 0.5s ease-out",
           }}
         />
-        {/* Element 2 */}
-        <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-[100px] animate-bounce" 
-             style={{ animationDuration: '8s' }} />
-        {/* Element 3 */}
-        <div className="absolute bottom-1/4 left-1/2 w-64 h-64 bg-primary/5 rounded-full blur-[80px] animate-pulse" />
+        <div
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse"
+          style={{
+            transform: `translate(${-mousePosition.x}px, ${-mousePosition.y}px)`,
+            transition: "transform 0.5s ease-out",
+          }}
+        />
       </div>
 
-      <div className="container mx-auto px-10 md:px-16 relative z-10"> {/* Increased horizontal padding */}
+      <div className="container mx-auto px-10 md:px-16 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           
-          {/* MOBILE ORDER: Badge comes first */}
-          <div className="w-full md:w-1/2 flex flex-col items-start text-left animate-fade-in-left">
+          {/* CONTENT SECTION */}
+          <div className="w-full md:w-1/2 text-left animate-fade-in-left">
+            {/* 1. Available Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
               <Sparkles className="w-4 h-4" />
               <span>Available for New Opportunities</span>
             </div>
 
-            {/* RIGHT SIDE (Profile Image) - Moved inside the flex-col for Mobile Order */}
-            <div className="md:hidden w-full flex justify-center items-center mb-8">
-               <div className="relative group">
-                  <div className="absolute -inset-4 border-2 border-dashed border-primary/40 rounded-full animate-spin-slow opacity-60"></div>
-                  <div className="absolute -inset-8 border-2 border-accent/30 rounded-full animate-spin-reverse border-t-transparent border-b-transparent"></div>
-                  <div className="relative w-56 h-56 rounded-full overflow-hidden border-4 border-background shadow-2xl z-10">
-                    <img src="/Pi7_Passport_Photo (1).jpeg" alt="Prashis" className="w-full h-full object-cover" />
-                  </div>
-               </div>
+            {/* 2. MOBILE ONLY: Rotating Image (Visible only on mobile/tablet) */}
+            <div className="md:hidden flex justify-center items-center mb-10">
+              <div className="relative group">
+                <div className="absolute -inset-4 border-2 border-dashed border-primary/40 rounded-full animate-spin-slow opacity-60 shadow-[0_0_20px_rgba(var(--primary),0.3)]"></div>
+                <div className="absolute -inset-8 border-2 border-accent/30 rounded-full animate-spin-reverse border-t-transparent border-b-transparent"></div>
+                <div className="relative w-60 h-60 rounded-full overflow-hidden border-4 border-background shadow-2xl z-10">
+                  <img 
+                    src="/Pi7_Passport_Photo (1).jpeg" 
+                    alt="Prashis Tiruwa" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-primary/20 blur-[60px] rounded-full -z-10 animate-pulse"></div>
+              </div>
             </div>
             
-            {/* NAME & BIO */}
+            {/* 3. Introduction Details */}
             <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
               Hi, I'm <span className="text-gradient">Prashis</span>
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg">
               A B.Sc.CSIT graduate specializing in <span className="text-foreground font-medium">Full-Stack Development</span> and 
-              <span className="text-foreground font-medium"> Cybersecurity</span>.
+              <span className="text-foreground font-medium"> Cybersecurity</span>. 
+              Building secure, high-performance web applications.
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" onClick={() => scrollToSection("projects")}>View My Work</Button>
-              <Button size="lg" variant="outline" onClick={() => scrollToSection("contact")}>Get In Touch</Button>
+              <Button size="lg" onClick={() => scrollToSection("projects")} className="group">
+                View My Work
+                <ArrowDown className="ml-2 w-4 h-4 group-hover:translate-y-1 transition-transform" />
+              </Button>
+              <Button size="lg" variant="outline" onClick={() => scrollToSection("contact")}>
+                Get In Touch
+              </Button>
             </div>
           </div>
 
-          {/* DESKTOP ONLY: Image container stays on the right */}
+          {/* DESKTOP ONLY: Rotating Image (Visible only on medium screens and up) */}
           <div className="hidden md:flex w-full md:w-1/2 justify-center items-center animate-fade-in-right">
             <div className="relative group">
               <div className="absolute -inset-4 border-2 border-dashed border-primary/40 rounded-full animate-spin-slow opacity-60 shadow-[0_0_20px_rgba(var(--primary),0.3)]"></div>
               <div className="absolute -inset-8 border-2 border-accent/30 rounded-full animate-spin-reverse border-t-transparent border-b-transparent"></div>
+
               <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-background shadow-2xl z-10 bg-muted">
                 <img 
                   src="/Pi7_Passport_Photo (1).jpeg" 
@@ -99,6 +106,7 @@ const Hero = () => {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
+              
               <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full -z-10 animate-pulse"></div>
             </div>
           </div>
@@ -106,8 +114,16 @@ const Hero = () => {
 
         {/* Stats Section */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-20 animate-fade-in-up">
-          {stats.map((stat, index) => (
-            <div key={index} className="p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all">
+          {[
+            { value: "6+", label: "Projects" },
+            { value: "2+", label: "Years Learning" },
+            { value: "10+", label: "Technologies" },
+            { value: "2", label: "Internships" },
+          ].map((stat, index) => (
+            <div
+              key={index}
+              className="p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all hover:scale-105"
+            >
               <div className="text-3xl md:text-4xl font-bold text-gradient">{stat.value}</div>
               <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
             </div>
