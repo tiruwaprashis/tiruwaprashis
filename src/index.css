@@ -218,21 +218,3 @@ All colors MUST be HSL.
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
-
-
-
-@layer utilities {
-  .animate-reverse {
-    animation-direction: reverse;
-  }
-}
-
-/* Custom Shield Animation if not using Tailwind's spin */
-@keyframes shield-glow {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.02); }
-}
-
-.cyber-glow {
-  animation: shield-glow 4s ease-in-out infinite;
-}
