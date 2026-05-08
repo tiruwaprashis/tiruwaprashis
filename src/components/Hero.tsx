@@ -69,7 +69,7 @@ const Hero = () => {
             </div>
 
             {/* MOBILE ONLY: Rotating Image Section */}
-            <div className="md:hidden flex flex-col items-center mb-12"> {/* Increased bottom margin */}
+            <div className="md:hidden flex flex-col items-center mb-16"> {/* Increased bottom margin */}
               <div className="relative group">
                 <div className="absolute -inset-4 border-2 border-dashed border-primary/40 rounded-full animate-spin-slow opacity-60 shadow-[0_0_20px_rgba(var(--primary),0.3)]"></div>
                 <div className="absolute -inset-8 border-2 border-accent/30 rounded-full animate-spin-reverse border-t-transparent border-b-transparent"></div>
@@ -129,7 +129,7 @@ const Hero = () => {
             { value: "6+", label: "Projects" },
             { value: "2+", label: "Years Learning" },
             { value: "10+", label: "Technologies" },
-            { value: "2", label: "Internships" },
+            { value: "2+", label: "Internships" },
           ].map((stat, index) => (
             <div key={index} className="p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all hover:scale-105">
               <div className="text-3xl md:text-4xl font-bold text-gradient">{stat.value}</div>
