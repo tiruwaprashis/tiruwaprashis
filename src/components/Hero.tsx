@@ -74,7 +74,7 @@ const Hero = () => {
                 <div className="absolute -inset-4 border-2 border-dashed border-primary/40 rounded-full animate-spin-slow opacity-60 shadow-[0_0_20px_rgba(var(--primary),0.3)]"></div>
                 <div className="absolute -inset-8 border-2 border-accent/30 rounded-full animate-spin-reverse border-t-transparent border-b-transparent"></div>
                 <div className="relative w-60 h-60 rounded-full overflow-hidden border-4 border-background shadow-2xl z-10">
-                  <img src="/Pi7_Passport_Photo (1).jpeg" alt="Prashis" className="w-full h-full object-cover" />
+                  <img src="/Pi7_PassportSize pic.jpeg" alt="Prashis" className="w-full h-full object-cover" />
                 </div>
                 <div className="absolute inset-0 bg-primary/20 blur-[60px] rounded-full -z-10 animate-pulse"></div>
               </div>
