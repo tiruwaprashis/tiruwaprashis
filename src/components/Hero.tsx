@@ -50,13 +50,13 @@ const Hero = () => {
           
           <div className="w-full md:w-1/2 text-left animate-fade-in-left">
             {/* Always Visible Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8">
               <Sparkles className="w-4 h-4" />
               <span>Available for New Opportunities</span>
             </div>
 
             {/* FLOATING ICONS - Always Visible */}
-            <div className="flex justify-start md:justify-start gap-8 mb-8">
+            <div className="flex justify-center md:justify-start gap-8 mb-8">
               <div className="animate-float" style={{ animationDelay: "0s" }}>
                 <Code2 className="w-12 h-12 text-primary opacity-60" />
               </div>
