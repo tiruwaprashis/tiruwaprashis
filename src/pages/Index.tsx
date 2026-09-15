@@ -33,6 +33,7 @@ const Index = () => {
       <Projects />
       <Experience />
       <Skills />
+      <Written />
       <Contact />
 
       <footer className="py-8 text-center text-muted-foreground border-t bg-background/50 backdrop-blur-sm">
