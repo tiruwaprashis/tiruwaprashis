@@ -1,3 +1,4 @@
+// src/components/Navigation.tsx
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Github, Linkedin } from "lucide-react";
@@ -8,7 +9,7 @@ const navItems = [
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
-  { label: "Written", href: "written" },
+  { label: "Written", href: "#written" }, // Updated to anchor hash
   { label: "Contact", href: "#contact" },
 ];
 
@@ -113,7 +114,7 @@ const Navigation = () => {
               </Button>
               <Button variant="ghost" size="icon" asChild>
                 <a
-                  href="https://www.linkedin.com/in/prashish-tiruwaa-9433a0300/"
+                  href="https://www.linkedin.com/in/prashis-tiruwa-9433a0300/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
