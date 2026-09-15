@@ -1,21 +1,30 @@
-// src/components/Written.tsx
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Copy, Check, FileText } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { 
+  FileText, 
+  Copy, 
+  Check, 
+  Search, 
+  Terminal, 
+  Tag, 
+  Clock, 
+  BookOpen 
+} from "lucide-react";
 
 interface Note {
   id: string;
   title: string;
   category: string;
+  readTime: string;
   content: string;
 }
 
-const notesData: Note[] = [
+const NOTES_DATA: Note[] = [
   {
     id: "basic-internet",
     title: "Basic knowledge of Internet",
     category: "Networking & Banking",
+    readTime: "5 min read",
     content: `History
 
 -> ARPANET (Advanced Research Projects Agency Network) is the first research network developed by U.S. Department of Defense agency (DARPA) in 1969 A.D
@@ -152,15 +161,21 @@ technical def
 
 └> Accessible to selected external users (vendors, clients)
 
-└> Used for B2B collaboration`,
-  },
+└> Used for B2B collaboration`
+  }
 ];
 
-const Written = () => {
-  const [activeNoteId, setActiveNoteId] = useState<string>(notesData[0].id);
-  const [copied, setCopied] = useState(false);
+export const Written = () => {
+  const [selectedNoteId, setSelectedNoteId] = useState<string>(NOTES_DATA[0].id);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [copied, setCopied] = useState<boolean>(false);
 
-  const activeNote = notesData.find((n) => n.id === activeNoteId) || notesData[0];
+  const activeNote = NOTES_DATA.find((note) => note.id === selectedNoteId) || NOTES_DATA[0];
+
+  const filteredNotes = NOTES_DATA.filter((note) =>
+    note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    note.category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const handleCopy = () => {
     navigator.clipboard.writeText(activeNote.content);
@@ -169,95 +184,148 @@ const Written = () => {
   };
 
   return (
-    <section id="written" className="py-24 bg-background relative">
+    <section id="written" className="py-20 bg-background text-foreground min-h-screen">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            <BookOpen className="w-4 h-4" />
-            <span>Revision Notes & Writtenups</span>
+        
+        {/* Header */}
+        <div className="mb-12 text-center md:text-left">
+          <div className="flex items-center justify-center md:justify-start gap-2 text-primary font-semibold mb-2">
+            <Terminal className="w-5 h-5" />
+            <span className="uppercase tracking-wider text-xs sm:text-sm">Revision Notes & Writtenups</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            Technical Knowledge Base
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
+            Tech Writtenups & Blogs
           </h2>
-          <p className="text-muted-foreground text-base md:text-lg">
-            Structured notes and quick revision summaries formatted for instant reference.
+          <p className="mt-2 text-muted-foreground text-sm sm:text-base max-w-2xl">
+            A structured repository of technical revision notes, exam prep notes, and quick references.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Note Selection Buttons */}
-          <div className="lg:col-span-4 flex flex-col gap-3">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1">
-              Select Note Topic
-            </p>
-            {notesData.map((note) => (
-              <Button
-                key={note.id}
-                variant={activeNoteId === note.id ? "default" : "outline"}
-                className={cn(
-                  "justify-start text-left h-auto py-4 px-5 transition-all duration-200",
-                  activeNoteId === note.id
-                    ? "shadow-md scale-[1.01]"
-                    : "hover:bg-accent/50"
-                )}
-                onClick={() => setActiveNoteId(note.id)}
-              >
-                <div className="flex flex-col items-start gap-1 w-full">
-                  <div className="flex items-center gap-2 w-full justify-between">
-                    <span className="font-semibold text-sm sm:text-base">
-                      {note.title}
-                    </span>
-                    <FileText className="w-4 h-4 opacity-70 flex-shrink-0" />
-                  </div>
-                  <span className="text-xs opacity-80 font-normal">
-                    {note.category}
-                  </span>
+        {/* Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          {/* Topic Title Buttons / Sidebar */}
+          <div className="lg:col-span-4 space-y-4">
+            
+            {/* Search Bar */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Search topics..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-secondary/50 border border-border rounded-xl pl-9 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+              />
+            </div>
+
+            {/* Note Title Buttons */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-muted-foreground px-1">
+                <span>Topics ({filteredNotes.length})</span>
+                <BookOpen className="w-3.5 h-3.5" />
+              </div>
+
+              {filteredNotes.length === 0 ? (
+                <div className="p-4 bg-secondary/30 rounded-xl text-muted-foreground text-sm text-center border border-border">
+                  No notes found matching "{searchQuery}"
                 </div>
-              </Button>
-            ))}
+              ) : (
+                filteredNotes.map((note) => {
+                  const isSelected = note.id === activeNote.id;
+                  return (
+                    <button
+                      key={note.id}
+                      onClick={() => setSelectedNoteId(note.id)}
+                      className={`w-full text-left p-4 rounded-xl border transition-all duration-200 flex flex-col justify-between group ${
+                        isSelected
+                          ? "bg-primary/10 border-primary text-foreground shadow-sm"
+                          : "bg-card/60 border-border text-foreground/80 hover:border-primary/50 hover:bg-card"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <span className={`font-semibold text-sm sm:text-base leading-snug group-hover:text-primary transition-colors ${
+                          isSelected ? "text-primary" : "text-foreground"
+                        }`}>
+                          {note.title}
+                        </span>
+                        {isSelected && (
+                          <span className="w-2 h-2 rounded-full bg-primary shrink-0 mt-1.5" />
+                        )}
+                      </div>
+
+                      <div className="flex items-center gap-3 mt-3 text-xs text-muted-foreground">
+                        <span className="flex items-center gap-1 bg-secondary/80 px-2 py-0.5 rounded text-foreground/80">
+                          <Tag className="w-3 h-3 text-primary" />
+                          {note.category}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {note.readTime}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })
+              )}
+            </div>
           </div>
 
-          {/* Note Viewer Card */}
+          {/* Detailed Note Container */}
           <div className="lg:col-span-8">
-            <div className="rounded-xl border bg-card text-card-foreground shadow-sm overflow-hidden">
-              {/* Card Header Toolbar */}
-              <div className="p-4 sm:p-6 border-b bg-muted/30 flex items-center justify-between gap-4">
+            <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-xl flex flex-col h-full">
+              
+              {/* Note Header Bar */}
+              <div className="bg-secondary/40 border-b border-border px-6 py-4 flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  <h3 className="text-xl font-bold">{activeNote.title}</h3>
-                  <span className="text-xs text-muted-foreground font-medium">
-                    Category: {activeNote.category}
-                  </span>
+                  <h3 className="text-lg sm:text-xl font-bold text-foreground flex items-center gap-2">
+                    <FileText className="w-5 h-5 text-primary" />
+                    {activeNote.title}
+                  </h3>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
+                    <span>Category: <strong className="text-foreground">{activeNote.category}</strong></span>
+                  </div>
                 </div>
+
+                {/* Copy Button */}
                 <Button
-                  variant="ghost"
-                  size="sm"
                   onClick={handleCopy}
-                  className="gap-2 text-xs"
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center gap-1.5 text-xs font-medium"
                 >
                   {copied ? (
                     <>
                       <Check className="w-4 h-4 text-emerald-500" />
-                      <span className="text-emerald-500">Copied</span>
+                      <span className="text-emerald-500">Copied!</span>
                     </>
                   ) : (
                     <>
-                      <Copy className="w-4 h-4" />
+                      <Copy className="w-4 h-4 text-muted-foreground" />
                       <span>Copy Raw</span>
                     </>
                   )}
                 </Button>
               </div>
 
-              {/* Exact Text Display */}
-              <div className="p-6 overflow-x-auto max-h-[650px] overflow-y-auto bg-background/50">
-                <pre className="font-mono text-xs sm:text-sm text-foreground/90 leading-relaxed whitespace-pre-wrap select-text">
+              {/* Exact Formatting Render Box */}
+              <div className="p-6 bg-background/90 overflow-x-auto flex-1">
+                <pre className="font-mono text-xs sm:text-sm md:text-base leading-relaxed whitespace-pre-wrap text-foreground/90 selection:bg-primary selection:text-primary-foreground">
                   {activeNote.content}
                 </pre>
               </div>
+
+              {/* Card Footer */}
+              <div className="bg-secondary/20 border-t border-border px-6 py-3 flex items-center justify-between text-xs text-muted-foreground">
+                <span>Exact formatting preserved</span>
+                <span>TpSecure Notes</span>
+              </div>
+
             </div>
           </div>
+
         </div>
+
       </div>
     </section>
   );
