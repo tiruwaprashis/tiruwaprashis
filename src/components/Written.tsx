@@ -14,6 +14,12 @@ const topics = [
     filename: "cybersecurity_and_IT_policies.md",
   },
   {
+    title: "Basic knowledge of Internet,Email and Web Design",
+    summary: "ARPANET, history, IP/TCP, roles in banking sector, ISP, DNS, and URL structure.",
+    href: `${NOTES_REPO}/blob/main/internet_email_web_note.md`, // Update filename if different in your repo
+    filename: "internet_email_web_note.md",
+  },
+  {
     title: "Cryptography",
     summary: "Symmetric and asymmetric encryption, hashing, digital signatures, TLS.",
     href: `${NOTES_REPO}/blob/main/crypto-notes.md`,
