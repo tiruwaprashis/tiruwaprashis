@@ -14,98 +14,63 @@ const navItems = [
 
 const TiruwaPrashisLogo = () => (
   <div className="flex items-center gap-2.5 group select-none">
-    {/* Custom SVG Icon combining Code Brackets, Syntax Lines, and a Teaching Pencil */}
+    {/* Harmonized SVG Mark: Shield (Cybersecurity) + Code Chevron (Full-Stack) + Nib/Cursor (Teaching) */}
     <svg
-      width="42"
+      width="34"
       height="34"
-      viewBox="0 0 110 90"
+      viewBox="0 0 40 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       className="shrink-0 transition-transform duration-300 group-hover:scale-105"
     >
       <defs>
-        <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#34D399" />
-          <stop offset="100%" stopColor="#059669" />
+        <linearGradient id="siteBrandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#1D4ED8" />
+          <stop offset="100%" stopColor="#0EA5E9" />
         </linearGradient>
-        <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FBBF24" />
-          <stop offset="100%" stopColor="#D97706" />
+        <linearGradient id="siteBrandBg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#1D4ED8" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="#0EA5E9" stopOpacity="0.16" />
         </linearGradient>
       </defs>
 
-      {/* Syntax / Code lines background */}
-      <g opacity="0.85">
-        <rect x="30" y="22" width="14" height="3.5" rx="1.75" fill="#FBBF24" />
-        <rect x="24" y="30" width="22" height="3.5" rx="1.75" fill="#34D399" />
-        <rect x="18" y="38" width="12" height="3.5" rx="1.75" fill="#FBBF24" />
-        <rect x="33" y="38" width="10" height="3.5" rx="1.75" fill="#34D399" />
-        <rect x="22" y="46" width="20" height="3.5" rx="1.75" fill="#34D399" />
-        <rect x="27" y="54" width="14" height="3.5" rx="1.75" fill="#FBBF24" />
-        <rect x="31" y="62" width="10" height="3.5" rx="1.75" fill="#34D399" />
-
-        <rect x="64" y="24" width="12" height="3.5" rx="1.75" fill="#34D399" />
-        <rect x="61" y="32" width="18" height="3.5" rx="1.75" fill="#FBBF24" />
-        <rect x="58" y="40" width="24" height="3.5" rx="1.75" fill="#34D399" />
-        <rect x="55" y="48" width="20" height="3.5" rx="1.75" fill="#FBBF24" />
-        <rect x="53" y="56" width="16" height="3.5" rx="1.75" fill="#34D399" />
-      </g>
-
-      {/* Left Angle Bracket '<' */}
+      {/* Outer Shield Perimeter (Matches Hero Shield Icon & Cybersecurity Focus) */}
       <path
-        d="M32 23L10 45L32 67"
-        stroke="url(#emeraldGrad)"
-        strokeWidth="7.5"
+        d="M20 3.5L33 8.8V19.2C33 27.9 27.4 35.1 20 37.5C12.6 35.1 7 27.9 7 19.2V8.8L20 3.5Z"
+        fill="url(#siteBrandBg)"
+        stroke="url(#siteBrandGrad)"
+        strokeWidth="2.4"
+        strokeLinejoin="round"
+      />
+
+      {/* Inner Code Chevron '<' (Full-Stack Engineering) */}
+      <path
+        d="M17.5 14.5L12.5 19.5L17.5 24.5"
+        stroke="#0F172A"
+        className="dark:stroke-slate-100"
+        strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
 
-      {/* Forward Slash '/' */}
+      {/* Inner Code Chevron '>' (Full-Stack Engineering) */}
       <path
-        d="M61 14L44 76"
-        stroke="url(#amberGrad)"
-        strokeWidth="7.5"
+        d="M22.5 14.5L27.5 19.5L22.5 24.5"
+        stroke="url(#siteBrandGrad)"
+        strokeWidth="2.5"
         strokeLinecap="round"
+        strokeLinejoin="round"
       />
 
-      {/* Right Angle Bracket '>' stylized as a Pencil for Teaching */}
-      <g>
-        {/* Top half of '>' (Pencil shaft & tip pointing up-left) */}
-        <path
-          d="M78 23L100 45"
-          stroke="url(#amberGrad)"
-          strokeWidth="7.5"
-          strokeLinecap="round"
-        />
-        {/* Pencil Tip detail at top-left of '>' */}
-        <path
-          d="M75.5 20.5L70 18L72.5 23.5Z"
-          fill="#FDE68A"
-        />
-        {/* Pencil Eraser band detail */}
-        <line
-          x1="81"
-          y1="26"
-          x2="85"
-          y2="22"
-          stroke="#0F172A"
-          strokeWidth="2"
-        />
-        {/* Bottom half of '>' */}
-        <path
-          d="M100 45L78 67"
-          stroke="url(#amberGrad)"
-          strokeWidth="7.5"
-          strokeLinecap="round"
-        />
-      </g>
+      {/* Center Teaching/Terminal Dot (Knowledge & Precision) */}
+      <circle cx="20" cy="19.5" r="1.75" fill="#0EA5E9" />
     </svg>
 
-    {/* Wordmark with dual-tone hierarchy */}
-    <span className="text-xl sm:text-2xl font-bold tracking-tight">
-      <span className="text-foreground">tiruwa</span>
-      <span className="bg-gradient-to-r from-emerald-400 to-amber-400 bg-clip-text text-transparent">
+    {/* Clean Wordmark Aligned with Hero Typography ("Hi, I'm Prashis") */}
+    <span className="text-xl font-bold tracking-tight leading-none flex items-baseline">
+      <span className="text-slate-900 dark:text-slate-100">tiruwa</span>
+      <span className="bg-gradient-to-r from-blue-700 to-sky-500 bg-clip-text text-transparent">
         prashis
       </span>
     </span>
@@ -122,14 +87,12 @@ const Navigation = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      // Safe scroll progress calculation
       const totalScroll =
         document.documentElement.scrollHeight - window.innerHeight;
       if (totalScroll > 0) {
         setScrollProgress((window.scrollY / totalScroll) * 100);
       }
 
-      // Update active section based on scroll position
       const sections = navItems.map((item) => item.href.substring(1));
       const current = sections.find((section) => {
         const element = document.getElementById(section);
@@ -160,13 +123,13 @@ const Navigation = () => {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled
-            ? "bg-background/85 backdrop-blur-md shadow-md py-3.5"
+            ? "bg-background/85 backdrop-blur-md shadow-sm border-b border-border/50 py-3.5"
             : "bg-transparent py-5"
         )}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            {/* Accessible Brand Logo Link (WCAG 2.2 AA Compliant) */}
+            {/* Accessible Brand Logo Link */}
             <a
               href="#hero"
               aria-label="tiruwaprashis - Back to top"
@@ -196,7 +159,7 @@ const Navigation = () => {
                       "text-sm font-medium transition-colors relative group py-1 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
                       isActive
                         ? "text-primary"
-                        : "text-foreground/80 hover:text-foreground"
+                        : "text-foreground/75 hover:text-foreground"
                     )}
                   >
                     {item.label}
@@ -212,7 +175,7 @@ const Navigation = () => {
             </div>
 
             {/* Social Links */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-2">
               <Button variant="ghost" size="icon" asChild>
                 <a
                   href="https://github.com/tiruwaprashis"
@@ -235,7 +198,7 @@ const Navigation = () => {
               </Button>
             </div>
 
-            {/* Mobile Menu Button (44x44px minimum touch target) */}
+            {/* Mobile Menu Button */}
             <Button
               variant="ghost"
               size="icon"
@@ -285,7 +248,12 @@ const Navigation = () => {
             </a>
           ))}
           <div className="flex gap-4 mt-4">
-            <Button variant="outline" size="icon" className="min-w-[44px] min-h-[44px]" asChild>
+            <Button
+              variant="outline"
+              size="icon"
+              className="min-w-[44px] min-h-[44px]"
+              asChild
+            >
               <a
                 href="https://github.com/tiruwaprashis"
                 target="_blank"
@@ -296,7 +264,12 @@ const Navigation = () => {
                 <Github className="w-5 h-5" />
               </a>
             </Button>
-            <Button variant="outline" size="icon" className="min-w-[44px] min-h-[44px]" asChild>
+            <Button
+              variant="outline"
+              size="icon"
+              className="min-w-[44px] min-h-[44px]"
+              asChild
+            >
               <a
                 href="https://www.linkedin.com/in/prashis-tiruwa-9433a0300/"
                 target="_blank"
@@ -318,7 +291,7 @@ const Navigation = () => {
         aria-valuenow={Math.round(scrollProgress)}
         aria-valuemin={0}
         aria-valuemax={100}
-        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-emerald-400 to-amber-400 z-50 transition-all duration-150"
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-blue-700 to-sky-500 z-50 transition-all duration-150"
         style={{ width: `${scrollProgress}%` }}
       />
     </>
