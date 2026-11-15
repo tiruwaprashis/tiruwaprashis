@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Code2, Shield, Server, Database } from "lucide-react";
+import { Code2, Shield, Server, Database, ExternalLink } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { cn } from "@/lib/utils";
 
@@ -36,6 +36,17 @@ const certifications = [
   "Defensive Cybersecurity Training",
   "SIEM Implementation (ELK Stack)",
   "Incident Response & Threat Hunting"
+];
+
+const securityProfiles = [
+  {
+    name: "CyberDefenders Profile",
+    url: "https://cyberdefenders.org/p/tiruwa_prashis",
+  },
+  {
+    name: "Blue Team Labs Online (BTLO)",
+    url: "https://blueteamlabs.online/public/user/bf80104b66847af99bf583",
+  }
 ];
 
 const SkillCard = ({ category, index }: { category: typeof skillCategories[0]; index: number }) => {
@@ -104,7 +115,7 @@ const Skills = () => {
           ))}
         </div>
 
-        {/* Certifications Section */}
+        {/* Certifications & Security Profiles Section */}
         <div
           ref={certRef}
           className={cn(
@@ -123,7 +134,7 @@ const Skills = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 {certifications.map((cert, index) => (
                   <div
                     key={index}
@@ -137,6 +148,27 @@ const Skills = () => {
                     </span>
                   </div>
                 ))}
+              </div>
+
+              {/* Added Security Platform Links */}
+              <div className="pt-4 border-t border-border/50 flex flex-wrap gap-4 items-center justify-between">
+                <span className="text-sm font-semibold text-muted-foreground">
+                  Verified Lab Platforms:
+                </span>
+                <div className="flex flex-wrap gap-3">
+                  {securityProfiles.map((profile, idx) => (
+                    <a
+                      key={idx}
+                      href={profile.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-secondary/50 hover:bg-primary hover:text-primary-foreground text-sm font-medium transition-all group"
+                    >
+                      {profile.name}
+                      <ExternalLink className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-transform" />
+                    </a>
+                  ))}
+                </div>
               </div>
             </CardContent>
           </Card>
