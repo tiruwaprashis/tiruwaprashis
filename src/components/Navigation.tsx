@@ -13,16 +13,16 @@ const navItems = [
 ];
 
 const TiruwaPrashisLogo = () => (
-  <div className="flex items-center gap-2.5 group select-none">
-    {/* Harmonized SVG Mark: Shield (Cybersecurity) + Code Chevron (Full-Stack) + Nib/Cursor (Teaching) */}
+  <div className="flex items-center gap-2 sm:gap-2.5 group select-none">
+    {/* Responsive SVG Mark: Shield + Clean Code Chevrons (Dot Removed) */}
     <svg
-      width="34"
-      height="34"
+      width="32"
+      height="32"
       viewBox="0 0 40 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
-      className="shrink-0 transition-transform duration-300 group-hover:scale-105"
+      className="shrink-0 sm:w-[36px] sm:h-[36px] transition-transform duration-300 group-hover:scale-105"
     >
       <defs>
         <linearGradient id="siteBrandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -35,7 +35,7 @@ const TiruwaPrashisLogo = () => (
         </linearGradient>
       </defs>
 
-      {/* Outer Shield Perimeter (Matches Hero Shield Icon & Cybersecurity Focus) */}
+      {/* Outer Shield Perimeter */}
       <path
         d="M20 3.5L33 8.8V19.2C33 27.9 27.4 35.1 20 37.5C12.6 35.1 7 27.9 7 19.2V8.8L20 3.5Z"
         fill="url(#siteBrandBg)"
@@ -44,34 +44,31 @@ const TiruwaPrashisLogo = () => (
         strokeLinejoin="round"
       />
 
-      {/* Inner Code Chevron '<' (Full-Stack Engineering) */}
+      {/* Left Code Chevron '<' */}
       <path
-        d="M17.5 14.5L12.5 19.5L17.5 24.5"
+        d="M17 14L11 20L17 26"
         stroke="#0F172A"
         className="dark:stroke-slate-100"
-        strokeWidth="2.5"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
 
-      {/* Inner Code Chevron '>' (Full-Stack Engineering) */}
+      {/* Right Code Chevron '>' */}
       <path
-        d="M22.5 14.5L27.5 19.5L22.5 24.5"
+        d="M23 14L29 20L23 26"
         stroke="url(#siteBrandGrad)"
-        strokeWidth="2.5"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-
-      {/* Center Teaching/Terminal Dot (Knowledge & Precision) */}
-      <circle cx="20" cy="19.5" r="1.75" fill="#0EA5E9" />
     </svg>
 
-    {/* Clean Wordmark Aligned with Hero Typography ("Hi, I'm Prashis") */}
-    <span className="text-xl font-bold tracking-tight leading-none flex items-baseline">
-      <span className="text-slate-900 dark:text-slate-100">tiruwa</span>
-      <span className="bg-gradient-to-r from-blue-700 to-sky-500 bg-clip-text text-transparent">
-        prashis
+    {/* Fully Uppercase, Bolder Wordmark with Responsive Scaling */}
+    <span className="text-base sm:text-lg md:text-xl font-extrabold tracking-wider leading-none flex items-baseline uppercase">
+      <span className="text-slate-900 dark:text-slate-100 font-black">TIRUWA</span>
+      <span className="bg-gradient-to-r from-blue-700 to-sky-500 bg-clip-text text-transparent font-black ml-1">
+        PRASHIS
       </span>
     </span>
   </div>
@@ -132,7 +129,7 @@ const Navigation = () => {
             {/* Accessible Brand Logo Link */}
             <a
               href="#hero"
-              aria-label="tiruwaprashis - Back to top"
+              aria-label="TIRUWA PRASHIS - Back to top"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToSection("#hero");
