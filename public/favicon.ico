@@ -1,0 +1,21 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="favGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" />
+      <stop offset="100%" />
+    </linearGradient>
+    <linearGradient id="favBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" />
+      <stop offset="100%" />
+    </linearGradient>
+  </defs>
+
+  {/* Rounded App Icon Background Container for crisp browser tab rendering */}
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#favBg)" stroke="url(#favGrad)" />
+
+  {/* Left Code Chevron '<' */}
+  <path d="M26 20L16 32L26 44" stroke="#0F172A" />
+
+  {/* Right Code Chevron '>' */}
+  <path d="M38 20L48 32L38 44" stroke="url(#favGrad)" />
+</svg>
