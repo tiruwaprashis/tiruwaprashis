@@ -66,7 +66,7 @@ const Navigation = () => {
               }}
               className="text-2xl font-bold text-gradient hover:scale-105 transition-transform"
             >
-              ☆ TpSecure
+              ☆ TIRUWAPRASHIS
             </a>
 
             {/* Desktop Navigation */}
