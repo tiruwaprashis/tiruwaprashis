@@ -9,7 +9,7 @@ const projects = [
   {
     title: "Active Academy Website",
     description:
-      "The frontend of an e-learning site, written in React. I built the interface only; the backend is not my work.",
+      "The frontend of an e-learning site, written in React. I built the interface only; the backend is under process.",
     tags: ["React", "MongoDB", "Express", "Node.js"],
     note: "Built with AI assistance.",
     image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=600&fit=crop",
