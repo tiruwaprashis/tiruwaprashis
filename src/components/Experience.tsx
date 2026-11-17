@@ -7,15 +7,30 @@ import { cn } from "@/lib/utils";
 const experiences = [
   {
     type: "work",
-    title: "Security Operation Center (SOC) Mentee",
-    company: "Vairav Tech, Kathmandu",
-    period: "March 2025 – May 2025",
+    title: "Training Coordinator Intern",
+    company: "Deerwalk Training Center, Kathmandu",
+    period: "August 2026 – Present",
     description: [
-      "Gained hands-on knowledge of ethical hacking, vulnerability assessment, and network security",
-      "Used tools such as Burp Suite, Kali Linux, Wireshark and ELK Stack for monitoring and analysis",
-      "Demonstrated commitment to learning, collaboration, and cybersecurity best practices"
+      "Work in Excel and PowerPoint for day-to-day coordination",
+      "Work with the digital marketing team and post job openings",
+      "Conduct workshops, with a focus on classes such as cybersecurity",
+      "Deal with clients and introduce our courses and prices to them",
+      "Named Employee of the Month"
     ],
-    skills: ["Burp Suite", "Kali Linux", "Wireshark", "ELK Stack"]
+    skills: ["Excel", "PowerPoint", "Workshops", "Client handling"]
+  },
+  {
+    type: "work",
+    title: "SOC Mentorship Program (mentee)",
+    company: "Vairav Technology, Kathmandu",
+    period: "29 March – 9 May 2025",
+    description: [
+      "Mapped the WannaCry attack onto the seven Cyber Kill Chain stages and proposed one SOC defence for each",
+      "Analysed three packet captures in Wireshark (TeslaCrypt ransomware, a web shell upload after a port scan, a Dridex/Ursnif infection), extracted indicators of compromise and checked samples on VirusTotal",
+      "Set up the ELK stack as a self-built SIEM",
+      "Completed assigned labs on phishing emails, a web attack, ransomware and a malicious browser extension"
+    ],
+    skills: ["Wireshark", "Kali Linux", "ELK Stack", "VirusTotal"]
   },
   {
     type: "work",
@@ -36,7 +51,7 @@ const education = [
     degree: "Bachelor of Science in Computer Science & IT",
     institution: "Mahendra Multiple Campus, Nepalgunj",
     year: "2082 BS (2025 AD)",
-    status: "Current"
+    status: "Completed"
   },
   {
     degree: "+2 Science Stream",
@@ -89,12 +104,11 @@ const Experience = () => {
               <h3 className="text-2xl md:text-3xl font-semibold">Work Experience</h3>
             </div>
             <div className="space-y-6 relative">
-              {/* Timeline line */}
               <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-primary/20 hidden md:block" />
 
               {experiences.map((exp, index) => (
                 <Card
-                  key={index}
+                  key={exp.title}
                   className="hover-lift md:ml-12"
                   style={{ animationDelay: `${index * 0.2}s` }}
                 >
@@ -119,9 +133,9 @@ const Experience = () => {
                       ))}
                     </ul>
                     <div className="flex flex-wrap gap-2">
-                      {exp.skills.map((skill, i) => (
+                      {exp.skills.map((skill) => (
                         <Badge
-                          key={i}
+                          key={skill}
                           variant="outline"
                           className="hover:bg-primary hover:text-primary-foreground transition-colors"
                         >
@@ -150,21 +164,18 @@ const Experience = () => {
               <h3 className="text-2xl md:text-3xl font-semibold">Education</h3>
             </div>
             <div className="space-y-4 relative">
-              {/* Timeline line */}
               <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-accent/20 hidden md:block" />
 
               {education.map((edu, index) => (
                 <Card
-                  key={index}
+                  key={edu.degree}
                   className="hover-lift md:ml-12"
                   style={{ animationDelay: `${index * 0.2}s` }}
                 >
                   <CardHeader>
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                       <CardTitle className="text-lg">{edu.degree}</CardTitle>
-                      <Badge variant={edu.status === "Current" ? "default" : "secondary"}>
-                        {edu.year}
-                      </Badge>
+                      <Badge variant="secondary">{edu.year}</Badge>
                     </div>
                     <CardDescription className="text-base">{edu.institution}</CardDescription>
                   </CardHeader>
