@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Code2, Shield, Server, Database, ExternalLink } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -31,22 +32,19 @@ const skillCategories = [
   }
 ];
 
+// Credentials only. Courses and program topics are not listed here.
 const certifications = [
   "Certified AppSec Practitioner v2 (CAP) - Aug 2025",
-  "Defensive Cybersecurity Training",
-  "SIEM Implementation (ELK Stack)",
-  "Incident Response & Threat Hunting"
+  "Google Cybersecurity Professional",
+  "AWS Academy Graduate - Cloud Foundations",
+  "AWS Academy Graduate - Cloud Architecting",
+  "Ethical Hacking Essentials (EHE)",
+  "Cisco Introduction to Data Science"
 ];
 
-const securityProfiles = [
-  {
-    name: "CyberDefenders Profile",
-    url: "https://cyberdefenders.org/p/tiruwa_prashis",
-  },
-  {
-    name: "Blue Team Labs Online (BTLO)",
-    url: "https://blueteamlabs.online/public/user/bf80104b66847af99bf583",
-  }
+const labProfiles = [
+  { label: "CyberDefenders Profile", href: "https://cyberdefenders.org/p/tiruwa_prashis" },
+  { label: "Blue Team Labs Online (BTLO)", href: "https://blueteamlabs.online/home/challenges?category=ALL" }
 ];
 
 const SkillCard = ({ category, index }: { category: typeof skillCategories[0]; index: number }) => {
@@ -73,9 +71,9 @@ const SkillCard = ({ category, index }: { category: typeof skillCategories[0]; i
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2">
-            {category.skills.map((skill, skillIndex) => (
+            {category.skills.map((skill) => (
               <Badge
-                key={skillIndex}
+                key={skill}
                 variant="outline"
                 className="hover:bg-primary hover:text-primary-foreground transition-all hover:scale-105"
               >
@@ -111,11 +109,11 @@ const Skills = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {skillCategories.map((category, index) => (
-            <SkillCard key={index} category={category} index={index} />
+            <SkillCard key={category.title} category={category} index={index} />
           ))}
         </div>
 
-        {/* Certifications & Security Profiles Section */}
+        {/* Certifications */}
         <div
           ref={certRef}
           className={cn(
@@ -130,14 +128,14 @@ const Skills = () => {
                 <div className="p-2 rounded-lg bg-primary/10">
                   <Shield className="w-6 h-6 text-primary" />
                 </div>
-                Certifications & Training
+                Certifications
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                {certifications.map((cert, index) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {certifications.map((cert) => (
                   <div
-                    key={index}
+                    key={cert}
                     className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors group"
                   >
                     <span className="text-primary mt-1 text-xl group-hover:scale-125 transition-transform">
@@ -150,23 +148,16 @@ const Skills = () => {
                 ))}
               </div>
 
-              {/* Added Security Platform Links */}
-              <div className="pt-4 border-t border-border/50 flex flex-wrap gap-4 items-center justify-between">
-                <span className="text-sm font-semibold text-muted-foreground">
-                  Verified Lab Platforms:
-                </span>
+              <div className="mt-6 pt-6 border-t flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <span className="text-sm text-muted-foreground font-medium">Verified Lab Platforms:</span>
                 <div className="flex flex-wrap gap-3">
-                  {securityProfiles.map((profile, idx) => (
-                    <a
-                      key={idx}
-                      href={profile.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-secondary/50 hover:bg-primary hover:text-primary-foreground text-sm font-medium transition-all group"
-                    >
-                      {profile.name}
-                      <ExternalLink className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-transform" />
-                    </a>
+                  {labProfiles.map((profile) => (
+                    <Button key={profile.label} variant="secondary" size="sm" asChild>
+                      <a href={profile.href} target="_blank" rel="noopener noreferrer">
+                        {profile.label}
+                        <ExternalLink className="w-3.5 h-3.5 ml-2" />
+                      </a>
+                    </Button>
                   ))}
                 </div>
               </div>
