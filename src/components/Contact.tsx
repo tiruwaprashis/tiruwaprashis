@@ -39,8 +39,7 @@ const Contact = () => {
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Let's Connect</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              I'm actively seeking opportunities in IT Support, Technology Consulting, or Web
-              Development. Feel free to reach out for collaboration or just to say hi!
+              I’m open to junior cybersecurity, QA and developer roles. Email is the quickest way to reach me or just to say hi!
             </p>
           </div>
 
